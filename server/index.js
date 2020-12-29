@@ -2,6 +2,8 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
@@ -22,7 +24,7 @@ io.on('connect', (socket) => {
 
     socket.join(user.room);
 
-    socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
+    socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}. Have a nice day`});
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
 
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
@@ -46,6 +48,17 @@ io.on('connect', (socket) => {
       io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
     }
   })
+
+  socket.on('loadImage', () => {
+      const readableStream = fs.ReadStream(path.resolve(__dirname,'./imgs/badger.jpg'), {
+        encoding: 'binary'
+      });
+
+      readableStream.on('data', (chunk) => {
+        console.log('sending chunk');
+        socket.emit('image', chunk);
+      });
+  });
 });
 
 server.listen(process.env.PORT || 5000, () => console.log(`Server has started.`));

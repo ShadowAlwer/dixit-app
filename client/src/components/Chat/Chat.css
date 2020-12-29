@@ -18,12 +18,13 @@
 .gameBoard {
   flex: 2 0 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   background: #8a4e0a;
   border-radius: 10px;
   width: 100%;
   min-height: 60%;
+  padding: 2%;
 
 }
 

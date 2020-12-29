@@ -7,8 +7,9 @@ import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 
 import './Chat.css';
+import Card from "../Card/Card";
 
-const ENDPOINT = 'https://project-chat-application.herokuapp.com/';
+const ENDPOINT = 'localhost:5000';
 
 let socket;
 
@@ -54,7 +55,11 @@ const Chat = ({ location }) => {
 
   return (
     <div className="outerContainer">
-      <div className="gameBoard"></div>
+      <div className="gameBoard">
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+      </div>
       <div className="container">
           <InfoBar room={room} />
           <Messages messages={messages} name={name} />
