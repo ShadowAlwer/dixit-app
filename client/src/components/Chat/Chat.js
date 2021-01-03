@@ -26,9 +26,12 @@ const Chat = ({ location }) => {
     socket = io(ENDPOINT);
 
     setRoom(room);
-    setName(name)
+    setName(name);
 
-    socket.emit('join', { name, room }, (error) => {
+    let playerID = localStorage.getItem('playerID');
+    console.log(playerID);
+
+    socket.emit('join', { name, room, playerID }, (error) => {
       if(error) {
         alert(error);
       }
@@ -43,13 +46,17 @@ const Chat = ({ location }) => {
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
+
+    socket.on('playerID', user => {
+      localStorage.setItem('playerID', user.id);
+    })
 }, []);
 
   const sendMessage = (event) => {
     event.preventDefault();
-
+    let playerID = localStorage.getItem('playerID');
     if(message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
+      socket.emit('sendMessage', {message: message, id: playerID}, () => setMessage(''));
     }
   }
 

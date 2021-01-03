@@ -1,6 +1,6 @@
 const users = [];
 
-const addUser = ({ id, name, room }) => {
+const addUser = ({ name, room }) => {
   name = name.trim().toLowerCase();
   room = room.trim().toLowerCase();
 
@@ -8,6 +8,8 @@ const addUser = ({ id, name, room }) => {
 
   if(!name || !room) return { error: 'Username and room are required.' };
   if(existingUser) return { error: 'Username is taken.' };
+
+  const id = Math.floor(Math.random() * 10000)
 
   const user = { id, name, room };
 
@@ -22,7 +24,11 @@ const removeUser = (id) => {
   if(index !== -1) return users.splice(index, 1)[0];
 }
 
-const getUser = (id) => users.find((user) => user.id === id);
+const getUser = (id) => {
+  console.log('Finding user -> id = ' + id);
+  const user = users.find((user) => user.id === Number(id));
+  return user
+}
 
 const getUsersInRoom = (room) => users.filter((user) => user.room === room);
 
