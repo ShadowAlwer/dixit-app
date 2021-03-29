@@ -13,8 +13,11 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+const dir = path.resolve(__dirname, 'public');
+
 app.use(cors());
 app.use(router);
+app.use(express.static(dir))
 
 
 io.on('connect', (socket) => {
@@ -58,16 +61,6 @@ io.on('connect', (socket) => {
     }
   })
 
-  socket.on('loadImage', (imageId) => {
-      const readableStream = fs.ReadStream(path.resolve(__dirname,'./imgs/badger.jpg'), {
-        encoding: 'binary'
-      });
-
-      readableStream.on('data', (chunk) => {
-        //console.log('sending chunk');
-        socket.emit('image', chunk);
-      });
-  });
 });
 
 server.listen(process.env.PORT || 5000, () => console.log(`Server has started.`));

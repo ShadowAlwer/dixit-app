@@ -3,6 +3,12 @@
     height: 400px;
     background: red;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-content: center;
+}
+
+.cardImage {
+    width: 175px;
+    height: 375px;
+    background: red;
 }
