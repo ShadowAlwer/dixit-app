@@ -1,14 +1,16 @@
 .cardContainer {
-    width: 200px;
+    width: 300px;
     height: 400px;
-    background: red;
+    background: linear-gradient(#e66465, #9198e5);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .cardImage {
-    width: 175px;
-    height: 375px;
-    background: red;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+    object-fit: fill;
 }
+
