@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+const { getCard } = require('./game');
 
 const router = require('./router');
 
@@ -59,6 +60,10 @@ io.on('connect', (socket) => {
       io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
       io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
     }
+  })
+
+  socket.on('getCard', () => {
+    socket.emit('setCard', getCard());
   })
 
 });

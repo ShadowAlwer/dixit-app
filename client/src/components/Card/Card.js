@@ -15,17 +15,15 @@ class Card extends React.Component {
       socket: io(ENDPOINT),
       toUpdate: true,
       name: 'name_not_loaded',
-      imageBinData: []
     }
   }
 
   componentDidMount() {
-    this.state.socket.on('image', chunk => {
-      this.state.imageBinData = [ ...this.state.imageBinData, chunk ];
+    this.state.socket.on('setCard', cardData => {
+      this.state.name = cardData.fileName
     });
     if (this.state.toUpdate) {
-      // this.loadImage(1);
-      // this.getCardName(1);
+      this.state.socket.emit('getCard');
       this.state.toUpdate =  false;
     }
   }
@@ -41,7 +39,7 @@ class Card extends React.Component {
   render () {
     return (
       <div className="cardContainer">
-          <img className="cardImage" alt={this.state.name} src={'http://localhost:5000/imgs/badger.jpg'}></img>
+          <img className="cardImage" alt={this.state.name} src={'http://localhost:5000/imgs/'+this.state.name+'.jpg'}></img>
       </div>
     )
   }

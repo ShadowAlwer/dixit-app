@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
+
   },
   "keywords": [],
   "author": "",
@@ -15,5 +18,17 @@
     "mathjs": "^8.1.1",
     "nodemon": "^2.0.6",
     "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3",
+    "@types/faker": "^4.1.4",
+    "@types/jest": "^19.2.4",
+    "@types/node": "^7.10.0",
+    "babel-cli": "^6.26.0",
+    "faker": "^4.1.0",
+    "jest": "^20.0.4",
+    "ts-jest": "^20.0.6",
+    "ts-node": "^3.2.0",
+    "tslint": "^5.11.0"
   }
 }
