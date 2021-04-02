@@ -27,6 +27,14 @@ class Card extends React.Component {
       this.state.toUpdate =  false;
     }
   }
+
+  componentDidUpdate(prevProps) {
+      this.state.toUpdate = this.props.toUpdate
+      if (this.state.toUpdate) {
+        this.state.socket.emit('getCard');
+        this.state.toUpdate =  false;
+      }
+  }
     
     
   getCardName = (id) => {

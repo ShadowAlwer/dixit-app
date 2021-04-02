@@ -19,6 +19,7 @@ const Chat = ({ location }) => {
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [toUpdate, setToUpdate] = useState(false);
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -60,12 +61,22 @@ const Chat = ({ location }) => {
     }
   }
 
+  const getCards = () => {
+    setToUpdate(true);
+    setTimeout( () => {
+      setToUpdate(false);
+    })
+  }
+
   return (
     <div className="outerContainer">
       <div className="gameBoard">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        <div className="cardsContainer">
+          <Card toUpdate={toUpdate}></Card>
+          <Card toUpdate={toUpdate}></Card>
+          <Card toUpdate={toUpdate}></Card>
+        </div>
+        <button className="debugButton" onClick={getCards}>GetCards</button>
       </div>
       <div className="container">
           <InfoBar room={room} />
