@@ -21,6 +21,8 @@ class Card extends React.Component {
   componentDidMount() {
     this.state.socket.on('setCard', cardData => {
       this.state.name = cardData.fileName
+      this.refresh();
+      
     });
     if (this.state.toUpdate) {
       this.state.socket.emit('getCard');
@@ -34,6 +36,10 @@ class Card extends React.Component {
         this.state.socket.emit('getCard');
         this.state.toUpdate =  false;
       }
+  }
+
+  refresh(){
+    this.setState(this.state);
   }
     
     
