@@ -14,20 +14,19 @@ class Card extends React.Component {
     this.state = {
       socket: io(ENDPOINT),
       toUpdate: true,
-      name: 'name_not_loaded',
+      name: props.name,
     }
   }
 
   componentDidMount() {
-    this.state.socket.on('setCard', cardData => {
-      this.state.name = cardData.fileName
-      this.refresh();
-      
-    });
-    if (this.state.toUpdate) {
-      this.state.socket.emit('getCard');
-      this.state.toUpdate =  false;
-    }
+    // this.state.socket.on('setCard', cardData => {
+    //   this.state.name = cardData.fileName
+    //   this.refresh();
+    // });
+    // if (this.state.toUpdate) {
+    //   this.state.socket.emit('getCard');
+    //   this.state.toUpdate =  false;
+    // }
   }
 
   componentDidUpdate(prevProps) {

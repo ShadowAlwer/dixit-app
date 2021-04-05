@@ -20,6 +20,7 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [toUpdate, setToUpdate] = useState(false);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -48,8 +49,16 @@ const Chat = ({ location }) => {
       setUsers(users);
     });
 
-    socket.on('playerID', user => {
-      localStorage.setItem('playerID', user.id);
+    socket.on('playerID', id => {
+
+      localStorage.setItem('playerID', id);
+      id = localStorage.getItem('playerID');
+      console.log('Saved NEW player id:'+ id);
+    });
+
+    socket.on('setHand', cards => {
+      console.log('SET_HAND');
+      setCards(cards);
     })
 }, []);
 
@@ -72,9 +81,7 @@ const Chat = ({ location }) => {
     <div className="outerContainer">
       <div className="gameBoard">
         <div className="cardsContainer">
-          <Card toUpdate={toUpdate}></Card>
-          <Card toUpdate={toUpdate}></Card>
-          <Card toUpdate={toUpdate}></Card>
+          {cards.map(card => <Card name={card.fileName} key={card.id}></Card>)}
         </div>
         <button className="debugButton" onClick={getCards}>GetCards</button>
       </div>

@@ -1,0 +1,9 @@
+enum GameFaze {
+    WAITING_FOR_PLAYERS,
+    ACTIVE_PLAYER_CHOSING_CARD,
+    UNACTIVE_PLAYERS_CHOSING_CARDS,
+    VOTING,
+    
+}
+
+export {GameFaze}
