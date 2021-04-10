@@ -1,0 +1,67 @@
+
+
+.scoreBoard {
+    height: 100%;
+    width: 15vw;
+    display: flex;
+    flex-direction: row;
+    background-color: blanchedalmond;
+}
+
+.rabbitTerritory {
+    height: 100%;
+    flex: auto;
+    max-width: 12vw;
+}
+
+.numberContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1vw;
+    max-width: 3vw;
+}
+
+.labelContainer {
+    flex: auto;
+    font-size: large;
+    font-weight: bolder;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+}
+
+.numberFooter {
+    background-color: brown;
+    height: 6px;
+    width: 13vw;
+}
+
+.rabbit {
+    transition: transform 1s ease-out;
+}
+
+.green {
+    /*background-color: #00ed10;*/
+    filter: invert(50%) sepia(80%) saturate(2061%) hue-rotate(87deg) brightness(116%) contrast(111%);
+}
+
+.red {
+    /*background-color: #ed0c00;*/
+    filter: invert(14%) sepia(99%) saturate(6622%) hue-rotate(5deg) brightness(94%) contrast(105%);
+}
+
+.blue {
+    /*background-color: #00aeed;*/
+    filter: invert(62%) sepia(36%) saturate(7494%) hue-rotate(162deg) brightness(100%) contrast(101%);
+}
+
+.yellow {
+    /*background-color: #ede900;*/
+    filter: invert(76%) sepia(52%) saturate(918%) hue-rotate(10deg) brightness(107%) contrast(101%);
+}
+
+.pink {
+    /*background-color: #ff47e3;*/
+    filter: invert(49%) sepia(83%) saturate(3381%) hue-rotate(282deg) brightness(99%) contrast(104%);
+}
+

@@ -8,6 +8,7 @@ import Input from '../Input/Input';
 
 import './Chat.css';
 import Card from "../Card/Card";
+import ScoreBoard from "../ScoreBoard/ScoreBoard";
 
 const ENDPOINT = 'localhost:5000';
 
@@ -79,16 +80,19 @@ const Chat = ({ location }) => {
 
   return (
     <div className="outerContainer">
+      <ScoreBoard></ScoreBoard>
+      <div class="innerContainer">
       <div className="gameBoard">
         <div className="cardsContainer">
           {cards.map(card => <Card name={card.fileName} key={card.id}></Card>)}
         </div>
         <button className="debugButton" onClick={getCards}>GetCards</button>
       </div>
-      <div className="container">
-          <InfoBar room={room} />
-          <Messages messages={messages} name={name} />
-          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+        <div className="container">
+            <InfoBar room={room} />
+            <Messages messages={messages} name={name} />
+            <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,14 @@
 .outerContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
+  background-color: #1A1A1D;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
   background-color: #1A1A1D;
 }
 
